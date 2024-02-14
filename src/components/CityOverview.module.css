@@ -1,0 +1,47 @@
+.cityOverview {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 24px;
+}
+
+.textContainer {
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.text {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.text h1 {
+    font-size: 35px;
+    margin: 0 12px;
+}
+
+.text h3 {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    height: 63.99px;
+    display: flex;
+    align-items: center;
+}
+
+.city {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 0 16px;
+}
+
+.city img {
+    height: 64px;
+}
