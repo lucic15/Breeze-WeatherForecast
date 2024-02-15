@@ -3,6 +3,7 @@ import CityOverview from "./CityOverview";
 import HourlyForecast from "./HourlyForecast";
 import styles from "./Overview.module.css";
 import Map from "./Map";
+import DayForecast from "./DayForecast";
 
 const API_URL =
   "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=";
@@ -14,6 +15,7 @@ function Overview() {
       <div>
         <CityOverview />
         <HourlyForecast />
+        <DayForecast />
       </div>
       <Map />
     </div>

@@ -48,7 +48,7 @@ function Map() {
       )} */}
       <MapContainer
         center={mapPosition}
-        zoom={12}
+        zoom={5}
         scrollWheelZoom={true}
         className={styles.map}
         key={Date.now()}

@@ -3,7 +3,7 @@ import { useWeather } from "../context/WeatherContext";
 import HourCard from "./HourCard";
 import styles from "./HourlyForecast.module.css";
 function HourlyForecast() {
-  const { hourlyForecast } = useWeather();
+  const { hourlyData } = useWeather();
   const [isDragging, setIsDragging] = useState(false);
   const [initialX, setInitialX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -34,6 +34,7 @@ function HourlyForecast() {
   const handleSelectStart = (e) => {
     e.preventDefault();
   };
+  console.log(hourlyData);
   return (
     <div
       ref={scrollContainerRef}
@@ -44,10 +45,7 @@ function HourlyForecast() {
       onMouseMove={handleMouseMove}
       onDragStart={handleSelectStart}
     >
-      {hourlyForecast &&
-        hourlyForecast.map((hour, index) => (
-          <HourCard hour={hour} index={index} key={index} />
-        ))}
+      {hourlyData && hourlyData.map((hour) => <HourCard hour={hour} />)}
     </div>
   );
 }

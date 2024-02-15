@@ -2,8 +2,9 @@ import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 
 const initialState = {
-  data: null,
-  hourlyForecast: null,
+  weatherData: null,
+  dailyData: null,
+  hourlyData: null,
   cityName: "",
   temp: 0,
   humidity: 0,
@@ -25,13 +26,20 @@ const weatherReducer = (state, action) => {
     case "SET_DATA":
       return {
         ...state,
-        data: action.payload,
         cityName: action.payload.name,
-        humidity: action.payload.main.humidity,
-        status: action.payload.weather[0].main,
         imgCode: action.payload.sys.country,
+      };
+    case "SET_NEW_DATA":
+      return {
+        ...state,
+        weatherData: action.payload,
+        hourlyData: action.payload.hourly,
+        humidity: action.payload.current.humidity,
+        status: action.payload.daily.summary,
         isLoading: false,
-        cloudiness: action.payload.clouds.all,
+        cloudiness: action.payload.current.clouds,
+        temp: Math.round(action.payload.current?.temp - 273.15),
+        dailyData: action.payload.daily,
       };
     case "SET_TEMP":
       return {
@@ -45,8 +53,7 @@ const weatherReducer = (state, action) => {
         hourlyForecast: action.payload,
         isLoading: false,
       };
-    case "SET_NEW_DATA":
-      return { ...state };
+
     default:
       return state;
   }
@@ -122,27 +129,30 @@ function WeatherProvider({ children }) {
     fetchNewAPI();
   }, [defaultLat, defaultLon]);
 
-  const Temp = () => {
-    if (!state.data) return;
-    else
-      dispatch({
-        type: "SET_TEMP",
-        payload: Math.round(state.data.main.temp - 273.15),
-      });
-  };
+  // console.log(data);
+  // const Temp = () => {
+  //   if (!state.weatherData) return;
+  //   else
+  //     dispatch({
+  //       type: "SET_TEMP",
+  //       payload: Math.round(state.data?.current?.temp - 273.15),
+  //     });
+  // };
 
   const convertTemp = (temp) => {
     return Math.round(temp - 273.15);
   };
 
-  useEffect(() => {
-    Temp();
-  }, [state.data]);
+  // useEffect(() => {
+  //   Temp();
+  // }, [state.weatherData]);
 
   return (
     <WeatherContext.Provider
       value={{
-        data: state.data,
+        weatherData: state.weatherData,
+        dailyData: state.dailyData,
+        hourlyData: state.hourlyData,
         temp: state.temp,
         cityName: state.cityName,
         humidity: state.humidity,
