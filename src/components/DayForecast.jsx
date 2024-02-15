@@ -1,11 +1,16 @@
 import { useWeather } from "../context/WeatherContext";
+import DayCard from "./DayCard";
+import styles from "./DayForecast.module.css";
 
 function DayForecast() {
   const { dailyData } = useWeather();
   const firstFiveDays = dailyData && dailyData.slice(0, 5);
 
   return (
-    <div>{firstFiveDays && firstFiveDays.map((day) => <h1>{day.dt}</h1>)}</div>
+    <div className={styles.dayCardContainer}>
+      {firstFiveDays &&
+        firstFiveDays.map((day, index) => <DayCard day={day} key={index} />)}
+    </div>
   );
 }
 

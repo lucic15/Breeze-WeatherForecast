@@ -8,14 +8,14 @@ const initialState = {
   cityName: "",
   temp: 0,
   humidity: 0,
-  status: "",
   imgCode: "",
   isLoading: true,
   cloudiness: 0,
 };
 //Current time
+// const API_KEY = "appid=eaa3da3a6a72d6e09221b5f51b582cd6";
+const API_KEY = "appid=07bc2c94b8a779be1f318d29753d0927";
 
-const API_KEY = "appid=eaa3da3a6a72d6e09221b5f51b582cd6";
 // const NEW_API = `https://api.openweathermap.org/data/3.0/onecall?lat=${defaultLat}&lon=${defaultLot}&${API_KEY}`;
 const WeatherContext = createContext();
 
@@ -30,17 +30,18 @@ const weatherReducer = (state, action) => {
         imgCode: action.payload.sys.country,
       };
     case "SET_NEW_DATA":
+      console.log("Received new data:", action.payload);
       return {
         ...state,
         weatherData: action.payload,
         hourlyData: action.payload.hourly,
-        humidity: action.payload.current.humidity,
-        status: action.payload.daily.summary,
+        humidity: action.payload.current.humidity, // Potential source of the error
         isLoading: false,
         cloudiness: action.payload.current.clouds,
         temp: Math.round(action.payload.current?.temp - 273.15),
         dailyData: action.payload.daily,
       };
+
     case "SET_TEMP":
       return {
         ...state,
@@ -69,11 +70,17 @@ function WeatherProvider({ children }) {
 
   useEffect(() => {
     const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${defaultLat}&lon=${defaultLon}&${API_KEY}`;
+    const NEW_API = `https://api.openweathermap.org/data/3.0/onecall?lat=${defaultLat}&lon=${defaultLon}&${API_KEY}`;
+
     async function fetchWeather() {
       try {
         const res = await fetch(`${API_URL}`);
         const data = await res.json();
+        const res2 = await fetch(`${NEW_API}`);
+        const newData = await res2.json();
         dispatch({ type: "SET_DATA", payload: data });
+        dispatch({ type: "SET_NEW_DATA", payload: newData });
+
         console.log(data);
       } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -98,36 +105,6 @@ function WeatherProvider({ children }) {
 
   //   fetchHourlyForecast();
   // }, [defaultLat, defaultLon]);
-
-  useEffect(() => {
-    const API_HOURLY_URL = `https://api.openweathermap.org/data/3.0/onecall?lat=${defaultLat}&lon=${defaultLon}&${API_KEY}`;
-    async function fetchHourlyForecast() {
-      try {
-        const res = await fetch(`${API_HOURLY_URL}`);
-        const data = await res.json();
-        dispatch({ type: "SET_HOURLY", payload: data.hourly });
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-      }
-    }
-    fetchHourlyForecast();
-  }, [defaultLat, defaultLon]);
-
-  useEffect(() => {
-    const NEW_API = `https://api.openweathermap.org/data/3.0/onecall?lat=${defaultLat}&lon=${defaultLon}&${API_KEY}`;
-    async function fetchNewAPI() {
-      try {
-        const res = await fetch(`${NEW_API}`);
-        const data = await res.json();
-        dispatch({ type: "SET_NEW_DATA", payload: data });
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-      }
-    }
-    fetchNewAPI();
-  }, [defaultLat, defaultLon]);
 
   // console.log(data);
   // const Temp = () => {
@@ -156,7 +133,6 @@ function WeatherProvider({ children }) {
         temp: state.temp,
         cityName: state.cityName,
         humidity: state.humidity,
-        status: state.status,
         imgCode: state.imgCode,
         hourlyForecast: state.hourlyForecast,
         convertTemp,

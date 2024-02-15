@@ -1,8 +1,8 @@
 .hourlyCards {
     display: flex;
     gap: 1rem;
-    overflow: auto;
+    overflow: hidden;
     cursor: grab;
-    width: 50rem;
+    max-width: 42rem;
 
 }

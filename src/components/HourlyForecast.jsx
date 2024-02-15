@@ -45,7 +45,8 @@ function HourlyForecast() {
       onMouseMove={handleMouseMove}
       onDragStart={handleSelectStart}
     >
-      {hourlyData && hourlyData.map((hour) => <HourCard hour={hour} />)}
+      {hourlyData &&
+        hourlyData.map((hour, index) => <HourCard hour={hour} key={index} />)}
     </div>
   );
 }

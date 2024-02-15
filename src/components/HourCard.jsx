@@ -10,9 +10,6 @@ function HourCard({ hour, index }) {
       const date = new Date(timestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
 
       const options = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
         hour: "numeric",
         // Don't display seconds with leading zeros
         timeZone: "CET", // Set to Central European Time
@@ -29,13 +26,13 @@ function HourCard({ hour, index }) {
   return (
     <div key={index} className={styles.card}>
       <p>{humanReadableTime}</p>
-      <p>{convertTemp(hour.temp)}&deg;</p>
       {hour.weather && hour.weather[0] && (
         <img
           src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
           alt="Weather Icon"
         />
       )}
+      <p>{convertTemp(hour.temp)}&deg;</p>
     </div>
   );
 }

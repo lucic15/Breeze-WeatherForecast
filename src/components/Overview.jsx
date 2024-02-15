@@ -12,9 +12,11 @@ const API_KEY = "eaa3da3a6a72d6e09221b5f51b582cd6";
 function Overview() {
   return (
     <div className={styles.main}>
-      <div>
-        <CityOverview />
-        <HourlyForecast />
+      <div className={styles.leftSideContainer}>
+        <div className={styles.mainForecast}>
+          <CityOverview />
+          <HourlyForecast />
+        </div>
         <DayForecast />
       </div>
       <Map />
