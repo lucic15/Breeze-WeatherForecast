@@ -7,12 +7,11 @@ function HourCard({ hour, index }) {
   const [humanReadableTime, setHumanReadableTime] = useState();
   useEffect(() => {
     const convertTimestampToHumanReadable = () => {
-      const date = new Date(timestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
+      const date = new Date(timestamp * 1000);
 
       const options = {
         hour: "numeric",
-        // Don't display seconds with leading zeros
-        timeZone: "CET", // Set to Central European Time
+        timeZone: "CET",
       };
 
       setHumanReadableTime(date.toLocaleString("en-US", options));

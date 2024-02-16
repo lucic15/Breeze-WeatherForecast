@@ -25,7 +25,7 @@ function Map() {
   useEffect(
     function () {
       if (mapLat && mapLng) {
-        setMapPosition([mapLat, mapLng]); // Corrected
+        setMapPosition([mapLat, mapLng]);
       }
     },
     [mapLat, mapLng]
@@ -33,19 +33,14 @@ function Map() {
   useEffect(
     function () {
       if (geolocationPosition) {
-        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]); // Corrected
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
       }
     },
     [geolocationPosition]
   );
 
   return (
-    <div className={styles.mapContainer} /*onClick={() =>(navigate("form")}*/>
-      {/* {!geolocationPosition && (
-        <Button type="position" onClick={getPosition}>
-          {isLoadingPosition ? "Loading..." : "Use your position"}
-        </Button>
-      )} */}
+    <div className={styles.mapContainer}>
       <MapContainer
         center={mapPosition}
         zoom={5}
@@ -57,13 +52,7 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* {cities.map((city) => (
-          <Marker position={city.position} key={city.id}>
-            <Popup>
-              <span>{city.emoji}</span> <span>{city.cityName}</span>
-            </Popup>
-          </Marker>
-        ))} */}
+
         <ChangeCenter position={mapPosition} />
         <DetectClick />
       </MapContainer>
@@ -82,7 +71,6 @@ function DetectClick() {
   useMapEvent({
     click: (e) => {
       const { lat, lng } = e.latlng;
-      // console.log(e);
       navigate(`?lat=${lat}&lng=${lng}`);
     },
   });

@@ -9,7 +9,7 @@ function DayCard({ day }) {
   const { convertTemp } = useWeather();
   useEffect(() => {
     const convertTimestampToHumanReadable = () => {
-      const date = new Date(timestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
+      const date = new Date(timestamp * 1000);
 
       const weekDayOptions = {
         weekday: "short",

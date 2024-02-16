@@ -12,11 +12,8 @@ const initialState = {
   isLoading: true,
   cloudiness: 0,
 };
-//Current time
 // const API_KEY = "appid=eaa3da3a6a72d6e09221b5f51b582cd6";
 const API_KEY = "appid=07bc2c94b8a779be1f318d29753d0927";
-
-// const NEW_API = `https://api.openweathermap.org/data/3.0/onecall?lat=${defaultLat}&lon=${defaultLot}&${API_KEY}`;
 const WeatherContext = createContext();
 
 const weatherReducer = (state, action) => {
@@ -24,6 +21,7 @@ const weatherReducer = (state, action) => {
     case "LOADING":
       return { ...state, isLoading: true };
     case "SET_DATA":
+      document.title = action.payload.name;
       return {
         ...state,
         cityName: action.payload.name,
@@ -31,11 +29,16 @@ const weatherReducer = (state, action) => {
       };
     case "SET_NEW_DATA":
       console.log("Received new data:", action.payload);
+      document.title =
+        document.title +
+        " | " +
+        Math.round(action.payload.current?.temp - 273.15) +
+        "°";
       return {
         ...state,
         weatherData: action.payload,
         hourlyData: action.payload.hourly,
-        humidity: action.payload.current.humidity, // Potential source of the error
+        humidity: action.payload.current.humidity,
         isLoading: false,
         cloudiness: action.payload.current.clouds,
         temp: Math.round(action.payload.current?.temp - 273.15),
@@ -63,8 +66,6 @@ const weatherReducer = (state, action) => {
 function WeatherProvider({ children }) {
   const [state, dispatch] = useReducer(weatherReducer, initialState);
   const [lat, lon] = useUrlPosition();
-
-  // Provide default values for lat and lon if they are undefined
   const defaultLat = lat || 42.7805;
   const defaultLon = lon || 18.9562;
 
@@ -90,39 +91,9 @@ function WeatherProvider({ children }) {
     fetchWeather();
   }, [defaultLat, defaultLon]);
 
-  // useEffect(() => {
-  //   const API_HOURLY_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${defaultLat}&lon=${defaultLon}&${API_KEY}`;
-  //   async function fetchHourlyForecast() {
-  //     try {
-  //       const res = await fetch(`${API_HOURLY_URL}`);
-  //       const data = await res.json();
-  //       dispatch({ type: "SET_HOURLY", payload: data.list });
-  //       console.log(data.list);
-  //     } catch (error) {
-  //       console.error("Error fetching weather data:", error);
-  //     }
-  //   }
-
-  //   fetchHourlyForecast();
-  // }, [defaultLat, defaultLon]);
-
-  // console.log(data);
-  // const Temp = () => {
-  //   if (!state.weatherData) return;
-  //   else
-  //     dispatch({
-  //       type: "SET_TEMP",
-  //       payload: Math.round(state.data?.current?.temp - 273.15),
-  //     });
-  // };
-
   const convertTemp = (temp) => {
     return Math.round(temp - 273.15);
   };
-
-  // useEffect(() => {
-  //   Temp();
-  // }, [state.weatherData]);
 
   return (
     <WeatherContext.Provider
