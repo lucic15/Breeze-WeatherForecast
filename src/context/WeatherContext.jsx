@@ -21,7 +21,7 @@ const weatherReducer = (state, action) => {
     case "LOADING":
       return { ...state, isLoading: true };
     case "SET_DATA":
-      document.title = action.payload.name;
+      document.title = "Title" + " | " + action.payload.name;
       return {
         ...state,
         cityName: action.payload.name,
