@@ -12,6 +12,7 @@ import styles from "./Map.module.css";
 import { useEffect, useState } from "react";
 import { useWeather } from "../context/WeatherContext";
 import { useUrlPosition } from "../hooks/useUrlPosition";
+import { bounds } from "leaflet";
 function Map() {
   const { lat, lon } = useWeather();
   const {
@@ -39,6 +40,9 @@ function Map() {
     [geolocationPosition]
   );
 
+  const maxLat = 90; // Set your desired maximum latitude
+  const maxLon = 180; // Set your desired maximum longitude
+
   return (
     <div className={styles.mapContainer}>
       <MapContainer
@@ -47,6 +51,12 @@ function Map() {
         scrollWheelZoom={true}
         className={styles.map}
         key={Date.now()}
+        minZoom={2}
+        maxBounds={[
+          [-maxLat, -maxLon], // Southwest corner
+          [maxLat, maxLon], // Northeast corner
+        ]}
+        maxBoundsViscosity={1.0}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
