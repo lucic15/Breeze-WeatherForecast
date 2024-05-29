@@ -1,10 +1,3 @@
 # Weather Forecast
 
-TODO
-
--finish project
-
--finish readme
-
-
-
+*I might do a significant revamp with improved styling, functionality and more information.*
