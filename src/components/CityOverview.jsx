@@ -1,8 +1,7 @@
 import { useWeather } from "../context/WeatherContext";
 import styles from "./CityOverview.module.css";
 function CityOverview() {
-  const { temp, cityName, humidity, status, imgCode, cloudiness, isLoading } =
-    useWeather();
+  const { temp, cityName, humidity, imgCode, cloudiness } = useWeather();
 
   return (
     <div className={styles.cityOverview}>
@@ -16,11 +15,11 @@ function CityOverview() {
       </div>
       <div className={styles.text}>
         <h1>{humidity}%</h1>
-        <h3>Humidity</h3>
+        <h3>Humidity </h3>
       </div>
       <div className={styles.text}>
         <h1>{cloudiness}%</h1>
-        <h3>Cloudiness</h3>
+        <h3>Cloud cover</h3>
       </div>
     </div>
   );

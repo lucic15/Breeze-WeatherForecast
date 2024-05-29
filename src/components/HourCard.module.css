@@ -1,22 +1,21 @@
 .card {
-    background-color: #1E1F24;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 6rem;
-    padding: 12px;
-
+  background-color: #1e1f24;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 6rem;
+  padding: 12px;
 }
 
 .card p {
-    width: fit-content;
-    margin: 0;
-    padding: 3px 0;
-    color: #FEFFFF;
-    font-weight: 600;
+  width: fit-content;
+  margin: 0;
+  padding: 3px 0;
+  color: #feffff;
+  font-weight: 600;
 }
 
 .card img {
-    width: 56px;
+  width: 56px;
 }

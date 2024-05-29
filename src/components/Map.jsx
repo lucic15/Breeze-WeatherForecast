@@ -40,8 +40,8 @@ function Map() {
     [geolocationPosition]
   );
 
-  const maxLat = 90; // Set your desired maximum latitude
-  const maxLon = 180; // Set your desired maximum longitude
+  const maxLat = 90;
+  const maxLon = 180;
 
   return (
     <div className={styles.mapContainer}>
@@ -53,8 +53,8 @@ function Map() {
         key={Date.now()}
         minZoom={2}
         maxBounds={[
-          [-maxLat, -maxLon], // Southwest corner
-          [maxLat, maxLon], // Northeast corner
+          [-maxLat, -maxLon],
+          [maxLat, maxLon],
         ]}
         maxBoundsViscosity={1.0}
       >

@@ -1,8 +1,23 @@
 .hourlyCards {
-    display: flex;
-    gap: 1rem;
-    overflow: hidden;
-    cursor: grab;
-    max-width: 42rem;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: white;
+  cursor: grab;
+  max-width: 41rem;
+}
 
+.hourlyCards::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.hourlyCards::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.hourlyCards::-webkit-scrollbar-track:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

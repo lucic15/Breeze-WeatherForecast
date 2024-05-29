@@ -1,51 +1,51 @@
 .cityOverview {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    width: 100%;
-    gap: 24px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  gap: 24px;
 }
 
 .textContainer {
-    font-size: 25px;
-    font-weight: 300;
+  font-size: 25px;
+  font-weight: 300;
 }
 
 .text {
-    color: #fff;
-    display: flex;
-    flex-direction: column;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
 
-    align-items: center;
+  align-items: center;
 }
 
 .text h1 {
-    font-size: 28px;
-    margin: 0 12px;
+  font-size: 28px;
+  margin: 0 12px;
 }
 
 .text h3 {
-    font-size: 16px;
-    font-weight: 400;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .city {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    margin: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 8px;
 }
 
 .city img {
-    height: 64px;
+  height: 64px;
 }
 
 .cityName {
-    max-width: 300px;
-    font-size: 28px;
+  max-width: 300px;
+  font-size: 28px;
 }

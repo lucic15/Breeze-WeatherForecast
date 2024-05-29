@@ -12,8 +12,9 @@ const initialState = {
   isLoading: true,
   cloudiness: 0,
 };
-// const API_KEY = "appid=eaa3da3a6a72d6e09221b5f51b582cd6";
-const API_KEY = "appid=07bc2c94b8a779be1f318d29753d0927";
+
+const API_KEY = "appid=YOUR_KEY";
+
 const WeatherContext = createContext();
 
 const weatherReducer = (state, action) => {
@@ -94,7 +95,8 @@ function WeatherProvider({ children }) {
   const convertTemp = (temp) => {
     return Math.round(temp - 273.15);
   };
-
+  const key = import.meta.env.REACT_APP_API_KEY;
+  console.log(key);
   return (
     <WeatherContext.Provider
       value={{

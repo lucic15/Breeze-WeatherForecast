@@ -8,6 +8,7 @@ function HourlyForecast() {
   const [initialX, setInitialX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const scrollContainerRef = useRef(null);
+
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setInitialX(e.clientX);
@@ -36,18 +37,20 @@ function HourlyForecast() {
   };
   console.log(hourlyData);
   return (
-    <div
-      ref={scrollContainerRef}
-      className={styles.hourlyCards}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-      onMouseMove={handleMouseMove}
-      onDragStart={handleSelectStart}
-    >
-      {hourlyData &&
-        hourlyData.map((hour, index) => <HourCard hour={hour} key={index} />)}
-    </div>
+    <>
+      <div
+        ref={scrollContainerRef}
+        className={styles.hourlyCards}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+        onDragStart={handleSelectStart}
+      >
+        {hourlyData &&
+          hourlyData.map((hour, index) => <HourCard hour={hour} key={index} />)}
+      </div>
+    </>
   );
 }
 

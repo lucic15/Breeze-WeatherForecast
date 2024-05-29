@@ -1,4 +1,6 @@
+
 @import "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";
+
 
 
 :root {
@@ -9,7 +11,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #1E1F24;
+  background-color: #1e1f24;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

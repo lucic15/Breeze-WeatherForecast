@@ -1,22 +1,21 @@
 .main {
-    display: flex;
-    height: 90vh;
-    width: 90vw;
-    flex-direction: row;
-    gap: 25px;
+  display: flex;
+  height: 90vh;
+  width: 90vw;
+  flex-direction: row;
+  gap: 25px;
 }
 
 .mainForecast {
-    background-color: #2E2E38;
-    padding: 2rem;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  background-color: #2e2e38;
+  padding: 2rem;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .leftSideContainer {
-    height: 52rem;
-
+  height: 52rem;
 }
